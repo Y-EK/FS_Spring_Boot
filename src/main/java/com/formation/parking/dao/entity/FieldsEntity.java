@@ -13,10 +13,10 @@ public class FieldsEntity {
 	private String grp_nom;
 	
 	@JsonProperty(value = "grp_exploitation")
-	private String grp_exploitation;
+	private int grp_exploitation;
 	
 	@JsonProperty(value = "grp_disponible")
-	private String grp_disponible;
+	private int grp_disponible;
 	
 	@JsonProperty(value = "grp_statut")
 	private String grp_statut;
@@ -40,19 +40,19 @@ public class FieldsEntity {
 		this.grp_nom = grp_nom;
 	}
 
-	public String getGrp_exploitation() {
+	public int getGrp_exploitation() {
 		return grp_exploitation;
 	}
 
-	public void setGrp_exploitation(String grp_exploitation) {
+	public void setGrp_exploitation(int grp_exploitation) {
 		this.grp_exploitation = grp_exploitation;
 	}
 
-	public String getGrp_disponible() {
+	public int getGrp_disponible() {
 		return grp_disponible;
 	}
 
-	public void setGrp_disponible(String grp_disponible) {
+	public void setGrp_disponible(int grp_disponible) {
 		this.grp_disponible = grp_disponible;
 	}
 
