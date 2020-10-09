@@ -18,7 +18,7 @@ public class ReponseParkingAPIEntity {
 	public void setRecords(List<RecordEntity> records) {
 		this.records = records;
 	}
-	
-	
+
+
 
 }
