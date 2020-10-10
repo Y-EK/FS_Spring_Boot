@@ -14,14 +14,14 @@ import com.formation.parking.services.ParkingService;
 
 @Service
 public class ParkigServiceImpl implements ParkingService {
-	
+
 	@Autowired
 	public ParkingAPIDAO parkingAPIDAO;
 
 	@Override
 	public List<Parking> getListeParkings() {
 		ReponseParkingAPIEntity reponse = parkingAPIDAO.getListeParking();
-		
+
 		return transformEntityToModel(reponse);
 	}
 
@@ -30,7 +30,7 @@ public class ParkigServiceImpl implements ParkingService {
 		for (RecordEntity record : reponse.getRecords()) {
 			Parking parking = new Parking();
 			parking.setNom(record.getFields().getGrp_nom());
-			parking.setStatut(record.getFields().getGrp_statut());
+			parking.setStatut(getLibelleStatut(record));
 			parking.setNbPlacesDispo(record.getFields().getGrp_disponible());
 			parking.setNbPlacesTotal(record.getFields().getGrp_exploitation());
 			parking.setHeureMaj(record.getFields().getGrp_horodatage());
@@ -38,7 +38,20 @@ public class ParkigServiceImpl implements ParkingService {
 		}
 		return resultat;
 	}
-	
-	
+
+	private String getLibelleStatut(RecordEntity record) {
+		switch (record.getFields().getGrp_statut()) {
+		case "1": {
+			return "FERME";
+		}
+		case "2": {
+			return "ABONNES";
+		} 
+		case "5": {
+			return "OUVERT";
+		}
+		}
+		return "Données non disponibles";
+	}
 
 }
