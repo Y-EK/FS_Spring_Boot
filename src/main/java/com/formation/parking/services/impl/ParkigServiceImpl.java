@@ -1,5 +1,7 @@
 package com.formation.parking.services.impl;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,16 @@ public class ParkigServiceImpl implements ParkingService {
 			parking.setStatut(getLibelleStatut(record));
 			parking.setNbPlacesDispo(record.getFields().getGrp_disponible());
 			parking.setNbPlacesTotal(record.getFields().getGrp_exploitation());
-			parking.setHeureMaj(record.getFields().getGrp_horodatage());
+			parking.setHeureMaj(getHeureMaj(record));
 			resultat.add(parking);
 		}
 		return resultat;
+	}
+
+	private String getHeureMaj(RecordEntity record) {
+		OffsetDateTime dateMaj = OffsetDateTime.parse(record.getFields().getGrp_horodatage());
+		OffsetDateTime dateMajWithOffsetPlus2 = dateMaj.withOffsetSameInstant(ZoneOffset.of("+02:00"));
+		return dateMajWithOffsetPlus2.getHour() + "h " + dateMajWithOffsetPlus2.getMinute() + "m";
 	}
 
 	private String getLibelleStatut(RecordEntity record) {
