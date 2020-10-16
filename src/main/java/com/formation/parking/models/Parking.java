@@ -2,10 +2,18 @@ package com.formation.parking.models;
 
 public class Parking {
 	
+	private int identifiant;
 	private String nom;
 	private int nbPlacesDispo;
 	private int nbPlacesTotal;
 	private String statut;
+	
+	public int getIdentifiant() {
+		return identifiant;
+	}
+	public void setIdentifiant(int identifiant) {
+		this.identifiant = identifiant;
+	}
 	private String heureMaj;
 	
 	public String getNom() {
