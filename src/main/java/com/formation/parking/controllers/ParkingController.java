@@ -17,7 +17,7 @@ public class ParkingController {
 	@Autowired
 	private ParkingService parkingService;
 	
-	@CrossOrigin("http://localhost:4205")
+	@CrossOrigin("http://localhost:4200")
 	@RequestMapping(path = "/api/parkings", method = RequestMethod.GET)
 	public List<Parking> getListeParkings(){
 		
